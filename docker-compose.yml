@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: lingoverse_app
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      - lingoverse_network
+
+  db:
+    image: mysql:8.0
+    container_name: lingoverse_db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - lingoverse_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: lingoverse_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    env_file:
+      - .env
+    environment:
+      - PMA_HOST=${PMA_HOST}
+      - PMA_USER=${PMA_USER}
+      - PMA_PASSWORD=${PMA_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - lingoverse_network
+
+networks:
+  lingoverse_network:
+    driver: bridge
+
+volumes:
+  db_data:
