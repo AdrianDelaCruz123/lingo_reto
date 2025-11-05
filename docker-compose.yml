@@ -42,9 +42,10 @@ services:
     env_file:
       - .env
     environment:
-      - PMA_HOST=${PMA_HOST}
-      - PMA_USER=${PMA_USER}
-      - PMA_PASSWORD=${PMA_PASSWORD}
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+
     depends_on:
       - db
     networks:

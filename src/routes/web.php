@@ -1,12 +1,13 @@
 <?php
-
+use App\Http\Controllers\RankingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/rankings', [RankingController::class, 'index'])->name('rankings.index');
+Route::get('/rankingsStyled', [RankingController::class, 'indexStyled'])->name('rankings.indexStyled');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
