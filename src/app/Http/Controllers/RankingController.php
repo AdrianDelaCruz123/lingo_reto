@@ -11,14 +11,24 @@ class RankingController extends Controller
     /**
      * Display a listing of the resource.
      */
+    /**
+     * Muestra una lista de todos los rankings.
+     */
     public function index()
     {
+        // Obtiene todos los registros de la tabla 'rankings'
         $rankings = Ranking::all();
+        // Retorna la vista 'rankings.index' pasando los datos obtenidos
         return view('rankings.index', ['rankings' => $rankings]);
     }
+    /**
+     * Muestra la lista de rankings pero con un estilo diferente.
+     */
     public function indexStyled()
     {
+    // Obtiene todos los registros de la tabla 'rankings'
         $rankings = Ranking::all();
+        // Retorna la vista 'rankings.indexStyled' (versión con otro diseño)
         return view('rankings.indexStyled', ['rankings' => $rankings]);
     }
 

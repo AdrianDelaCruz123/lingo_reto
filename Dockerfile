@@ -15,7 +15,7 @@ WORKDIR /var/www/html
 # Copiar los archivos del proyecto al contenedor
 COPY ./src /var/www/html
 
-# ⚙️ Cambiar DocumentRoot de Apache para que apunte a /public (Laravel)
+# Cambiar DocumentRoot de Apache para que apunte a /public (Laravel)
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
     && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
 

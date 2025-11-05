@@ -1,59 +1,82 @@
 version: "3.9"
 
 services:
+  # ----------------------------------------------------
+  # 1. SERVICIO DE APLICACIÓN WEB (PHP-Apache)
+  # ----------------------------------------------------
   app:
+    # Construye la imagen usando el Dockerfile del directorio actual
     build: .
     container_name: lingoverse_app
     restart: always
+    # Mapea el puerto 8080 del host al puerto 80 del contenedor
     ports:
       - "8080:80"
+    # Sincroniza la carpeta local 'src' con '/var/www/html' del contenedor
     volumes:
       - ./src:/var/www/html
+    # Espera a que el servicio 'db' esté listo antes de iniciarse
     depends_on:
       - db
+    # Variables de entorno necesarias para conectarse a la base de datos
     environment:
       - DB_HOST=db
       - DB_DATABASE=lingoverse
       - DB_USERNAME=root
       - DB_PASSWORD=root
+    # Conecta este servicio a la red interna de Docker
     networks:
       - lingoverse_network
 
-
+  # ----------------------------------------------------
+  # 2. SERVICIO DE BASE DE DATOS (MySQL)
+  # ----------------------------------------------------
   db:
     image: mysql:8.0
     container_name: lingoverse_db
     restart: always
+    # Variables de entorno de MySQL (usuario root y base de datos por defecto)
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=lingoverse
+    # Mapea un volumen para persistir los datos de MySQL
     volumes:
       - db_data:/var/lib/mysql
+    # Conecta el servicio a la misma red que la app
     networks:
       - lingoverse_network
 
-
+  # ----------------------------------------------------
+  # 3. SERVICIO DE GESTIÓN DE BASES DE DATOS (phpMyAdmin)
+  # ----------------------------------------------------
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: lingoverse_phpmyadmin
     restart: always
+    # Mapea el puerto 8081 del host al 80 del contenedor phpMyAdmin
     ports:
       - "8081:80"
+    # Carga variables de entorno desde un archivo .env (opcional)
     env_file:
       - .env
     environment:
       - PMA_HOST=db
       - PMA_USER=root
       - PMA_PASSWORD=root
-
+    # Espera a que el servicio 'db' esté listo antes de iniciar
     depends_on:
       - db
     networks:
       - lingoverse_network
 
+# ----------------------------------------------------
+# 4. REDES Y VOLÚMENES
+# ----------------------------------------------------
 networks:
+  # Red interna para que los contenedores se comuniquen entre sí
   lingoverse_network:
     driver: bridge
 
 volumes:
+  # Volumen persistente para los datos de MySQL
   db_data:

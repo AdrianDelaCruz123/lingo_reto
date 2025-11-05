@@ -61,13 +61,13 @@
         <tbody>
         
             <?php
-            // Verificamos si la colección $palabras tiene elementos.
+            // Verificamos si la colección $rankings tiene elementos.
             // count() funciona tanto para arrays como para colecciones de Eloquent.
             if (count($rankings) > 0):
             ?>
 
                 <?php
-                // Iteramos sobre la colección $palabras usando un bucle foreach de PHP.
+                // Iteramos sobre la colección $rankings usando un bucle foreach de PHP.
                 foreach ($rankings as $ranking):
                 ?>
                     <tr>

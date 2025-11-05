@@ -6,8 +6,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Ruta que muestra la lista de rankings (vista normal)
+// Llama al método 'index' del controlador RankingController
 Route::get('/rankings', [RankingController::class, 'index'])->name('rankings.index');
+
+// Ruta que muestra la lista de rankings con otro estilo
+// Llama al método 'indexStyled' del mismo controlado
 Route::get('/rankingsStyled', [RankingController::class, 'indexStyled'])->name('rankings.indexStyled');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
