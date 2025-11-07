@@ -4,319 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lingo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background: linear-gradient(to right, #32A473, #2A8C63);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .menu {
-            display: flex;
-            gap: 20px;
-        }
-
-        .menu img {
-            height: 35px;
-            cursor: pointer;
-        }
-
-        .main {
-            display: flex;
-            flex: 1;
-            padding: 30px;
-            gap: 30px;
-        }
-
-        .game {
-            flex: 3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .info {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .info h3 {
-            color: #32A473;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-            text-align: center;
-        }
-
-        .info p {
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .board {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        #contenedor {
-            display: grid;
-            grid-template-columns: repeat(5, 70px);
-            gap: 10px;
-        }
-
-        .celda {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
-            border: 2px solid #555;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .celda img {
-            width: 60px;
-            height: 60px;
-        }
-
-        #teclado {
-            display: grid;
-            grid-template-columns: repeat(9, 60px);
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .tecla {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
-        }
-        .tecla:hover {
-            transform: translateY(-5px); 
-            box-shadow: 0 12px 20px rgba(255, 153, 0, 0.6); 
-        }
-        .stats {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .ranking {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-        }
-
-        .ranking h3 {
-            color: #32A473;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .ranking-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .ranking-table th {
-            text-align: left;
-            padding: 12px 15px;
-            border-bottom: 2px solid #32A473;
-            font-size: 1.1rem;
-        }
-
-        .ranking-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .ranking-table tr:last-child td {
-            border-bottom: none;
-        }
-
-
-        .timer {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .timer h2 {
-            color: #32A473;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        #tiempo {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #FFD700;
-            margin: 15px 0;
-        }
-
-        .streak {
-            font-size: 1.3rem;
-            margin: 15px 0;
-        }
-
-        #racha {
-            color: #FFD700;
-            font-weight: bold;
-        }
-
-        button {
-            background: linear-gradient(to right, #32A473, #2A8C63);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        footer {
-            background: linear-gradient(to right, #32A473, #2A8C63);
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
-
-        .social {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social img {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-        }
-
-        .auth {
-            display: flex;
-            gap: 20px;
-        }
-
-        .auth-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .auth-item:hover {
-            color: #FFD700;
-        }
-
-        .auth-item img {
-            width: 20px;
-            height: 20px;
-        }
-
-        @media (max-width: 1200px) {
-            .main {
-                flex-direction: column;
-            }
-            
-            .stats {
-                flex-direction: row;
-            }
-            
-            .ranking, .timer {
-                flex: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .stats {
-                flex-direction: column;
-            }
-            
-            #contenedor {
-                grid-template-columns: repeat(5, 60px);
-            }
-            
-            .celda {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .celda img {
-                width: 50px;
-                height: 50px;
-            }
-            
-            #teclado {
-                grid-template-columns: repeat(9, 50px);
-            }
-            
-            .tecla {
-                width: 50px;
-                height: 50px;
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/lingo.css') }}">
 </head>
 <body>
     <header>
         <div class="logo">
             <img src="elementos/logo.png" alt="">
             <h1>LINGO</h1>
-             <h3>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
+            <h3>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
         </div>
 
         <div class="menu">
@@ -367,7 +62,7 @@
                     </tr>
                 </table>
                 <form action="{{ route('rankings.indexStyled') }}" method="GET" style="display:inline;">
-                    <button type="submit">🏆 Ver Ranking</button>
+                    <button type="submit">Ver Ranking</button>
                 </form>
             </div>
 
@@ -420,10 +115,16 @@
         //----------------Funciones
         async function obtenerPalabraSecreta() {
             try {
-                const respuesta = await fetch("http://185.60.43.155:3000/api/word/1");
+                const respuesta = await fetch("/palabrasRandom", {
+                    credentials: "same-origin" // importante para rutas con auth
+                });
+
+                if (!respuesta.ok) {
+                    throw new Error("Error al obtener la palabra: " + respuesta.status);
+                }
+
                 const data = await respuesta.json();
-                
-                SECRETA = data.word.toUpperCase(); 
+                SECRETA = data.word.toUpperCase();
                 console.log("Palabra secreta:", SECRETA);
             } catch (error) {
                 console.error("Error al obtener la palabra secreta:", error);
@@ -431,6 +132,7 @@
                 SECRETA = "SIFON"; 
             }
         }
+
 
         function crearTablero() {
             contenedor.innerHTML = "";
@@ -468,30 +170,20 @@
         }
 
         function iniciarTiempo() {
-            tiempo = 15;
-            seg = 0;
-            contTiempo.innerHTML = `${tiempo - seg}`;
             clearInterval(intervalo);
             intervalo = setInterval(() => {
                 seg++;
-                contTiempo.innerHTML = `${tiempo - seg}`;
-                if (tiempo - seg === 0) {
+                contTiempo.innerText = tiempo - seg;
+
+                if (tiempo - seg <= 0) {
                     clearInterval(intervalo);
                     palabra = "";
                     posicion.columna = 0;
-                    posicion.fila++;
-                    iniciarTiempo();
-                }
-                if (posicion.fila > 4) {
-                    clearInterval(intervalo);
-                    desactivarTeclado();
-                    alert("Has perdido");
-                    racha = 0;
-                    contRacha.innerText = racha;
-                    btnNuevaPartida.style.display = "block";
+                    validarPalabra(); 
                 }
             }, 1000);
         }
+
 
         function cambiarLetra(letra) {
             let letraPos = document.getElementById(`Pos${posicion.fila}${posicion.columna}`);
@@ -503,36 +195,90 @@
                 validarPalabra();
                 palabra = "";
                 posicion.columna = 0;
-                posicion.fila++;
             }
         }
 
-        function validarPalabra() {
+
+
+        async function validarPalabra() {
+            // Primero, verificamos si la palabra existe en la API
+            const existe = await verificarPalabraAPI(palabra.toLowerCase());
+
+            clearInterval(intervalo); // detener el timer
+
+            if (!existe) {
+                alert("La palabra no existe");
+                // pasar a la siguiente fila sin colorear
+                posicion.fila++;
+                palabra = "";
+                posicion.columna = 0;
+
+                if (posicion.fila > 4) {
+                    desactivarTeclado();
+                    alert("Has perdido");
+                    racha = 0;
+                    contRacha.innerText = racha;
+                    btnNuevaPartida.style.display = "block";
+                } else {
+                    seg = 0;
+                    contTiempo.innerText = tiempo - seg;
+                    iniciarTiempo();
+                }
+                return; // salir de la función
+            }
+
+            // Si la palabra existe, coloreamos las letras según aciertos
             let aciertos = 0;
             palabra.split('').forEach((letraLingo, cont) => {
-                let posicionLetra = document.getElementById(`CelPos${posicion.fila}${cont}`);
+                let celda = document.getElementById(`CelPos${posicion.fila}${cont}`);
                 if (!SECRETA.includes(letraLingo)) {
-                    posicionLetra.style.backgroundColor = "#ff5252";
-                } else if (SECRETA[cont] == letraLingo) {
-                    posicionLetra.style.backgroundColor = "#4caf50";
+                    celda.style.backgroundColor = "#ff5252";
+                } else if (SECRETA[cont] === letraLingo) {
+                    celda.style.backgroundColor = "#4caf50";
                     aciertos++;
                 } else {
-                    posicionLetra.style.backgroundColor = "#ff9800";
+                    celda.style.backgroundColor = "#ff9800";
                 }
             });
 
             if (aciertos === SECRETA.length) {
-                clearInterval(intervalo);
                 desactivarTeclado();
                 racha++;
                 contRacha.innerText = racha;
                 alert(`¡Felicidades! Has ganado\nRacha actual: ${racha}`);
                 btnNuevaPartida.style.display = "block";
             } else {
-                clearInterval(intervalo);
-                iniciarTiempo();
+                // pasar a la siguiente fila
+                posicion.fila++;
+                palabra = "";
+                posicion.columna = 0;
+                if (posicion.fila > 4) {
+                    desactivarTeclado();
+                    alert("Has perdido");
+                    racha = 0;
+                    contRacha.innerText = racha;
+                    btnNuevaPartida.style.display = "block";
+                } else {
+                    seg = 0;
+                    contTiempo.innerText = tiempo - seg;
+                    iniciarTiempo();
+                }
             }
         }
+
+
+        async function verificarPalabraAPI(palabraUsuario) {
+            try {
+                const respuesta = await fetch(`http://185.60.43.155:3000/api/check/${palabraUsuario}`);
+                if (!respuesta.ok) throw new Error("Error al verificar palabra");
+                const data = await respuesta.json();
+                return data.exists; // asumimos que el API devuelve { exists: true/false }
+            } catch (error) {
+                console.error("Error API:", error);
+                return false; // si hay error consideramos que la palabra no existe
+            }
+        }
+
 
         function desactivarTeclado() {
             const teclas = teclado.querySelectorAll(".tecla");
@@ -554,8 +300,8 @@
         async function iniciarJuego() {
             crearTablero();
             crearTeclado();
-            await obtenerPalabraSecreta();
             iniciarTiempo();
+            await obtenerPalabraSecreta();
         }
         
         //--------------------Main

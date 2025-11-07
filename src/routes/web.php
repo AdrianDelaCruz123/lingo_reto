@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/palabrasRandom/{cantidad?}', [PalabraController::class, 'indexRandom'])->name('palabras.indexRandom')
+Route::get('/palabrasRandom', [PalabraController::class, 'indexRandom'])->name('palabras.indexRandom')
         ->middleware(['auth', 'verified']);
 //Ruta que verifica si la palabra dada en la ruta existe en la tabla 'palabras' y devuelve json
 Route::get('/verificarPalabra/{palabra}', [PalabraController::class, 'verificarPalabra'])

@@ -22,10 +22,17 @@ class PalabraController extends Controller
         return view('palabras.indexStyled', ['palabras' => $palabras]);
     }
     
-    public function indexRandom($cantidad = 1)
+    public function indexRandom()
     {
-    $palabras = Palabra::inRandomOrder()->take($cantidad)->get();
-    return view('palabras.index', ['palabras' => $palabras ]);
+        $palabra = Palabra::inRandomOrder()->first();
+
+        if (!$palabra) {
+            return response()->json(['error' => 'No hay palabras disponibles'], 404);
+        }
+
+        return response()->json([
+            'word' => $palabra->palabra
+        ]);
     }
     public function verificarPalabra(String $palabra): JsonResponse
     {
