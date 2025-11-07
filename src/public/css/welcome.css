@@ -1,0 +1,115 @@
+        /* Aseguramos que nada se salga de la pantalla */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            background-color: #0a0a0a;
+            color: #EDEDEC;
+            overflow-x: hidden; /* ocultar scroll horizontal */
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            max-width: 100vw;
+            background: linear-gradient(to right, #32A473, #2A8C63);
+            padding: 15px 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav.nav-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap; /* evita desbordamiento */
+        }
+
+        nav a.btn {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        /* Hover con sombra gris en lugar de contorno */
+        nav a.btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* sombra negra */
+        }
+
+        /* Botón login */
+        a.login {
+            color: #EDEDEC;
+            background-color: #1f1f1f;
+        }
+
+        /* Botón register */
+        a.register {
+            color: #EDEDEC;
+            background: linear-gradient(90deg, #32A473, #2A8C63);
+        }
+
+        /* MAIN CONTENT */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        main h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        main p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            nav.nav-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+                align-items: flex-end;
+            }
+        }

@@ -14,12 +14,13 @@
 <body>
     <header>
         <div class="logo">
-            <img src="/elementos/logo.png" alt="Logo">
+            <img src="elementos/logo.png" alt="">
             <h1>LINGO</h1>
+            <h3>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
         </div>
 
         <div class="menu">
-            <a href="{{ route('lingo') }}"><button>Volver a Lingo</button></a>
+            <img src="elementos/menu.png" alt="">
         </div>
     </header>
 
@@ -52,7 +53,20 @@
     </main>
 
     <footer>
-        Lingo &copy; {{ date('Y') }}
+        <div class="social">
+            <img src="elementos/facebook.png" alt="Facebook">
+            <img src="elementos/X.png" alt="Instagram">
+            <img src="elementos/instagram.png" alt="Twitter">
+        </div>
+        <div class="auth">
+            <div class="auth-item">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Cerrar sesión</button>
+                </form>
+                <img src="elementos/seguridad.png" alt="Seguridad">
+            </div>
+        </div>
     </footer>
 </body>
 </html>

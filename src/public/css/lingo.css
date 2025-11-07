@@ -1,4 +1,4 @@
-* {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -250,8 +250,10 @@
             cursor: pointer;
         }
 
-        .auth-item:hover {
-            color: #FFD700;
+        #CerrarSesion:hover {
+            border-color: #000000;
+            background-color: rgba(50, 164, 115, 0.2);
+            transform: translateY(-2px);
         }
 
         .auth-item img {

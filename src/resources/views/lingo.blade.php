@@ -85,7 +85,7 @@
             <div class="auth-item">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit">Cerrar sesión</button>
+                    <button id="CerrarSesion" type="submit">Cerrar sesión</button>
                 </form>
                 <img src="elementos/seguridad.png" alt="Seguridad">
             </div>
@@ -185,18 +185,19 @@
         }
 
 
-        function cambiarLetra(letra) {
+        async function cambiarLetra(letra) {
             let letraPos = document.getElementById(`Pos${posicion.fila}${posicion.columna}`);
             letraPos.textContent = letra;
             palabra += letra;
             posicion.columna++;
 
             if (posicion.columna > 4) {
-                validarPalabra();
-                palabra = "";
+                await validarPalabra(); // esperamos a que valide antes de limpiar
+                palabra = "";           // ahora sí limpiamos después de colorear
                 posicion.columna = 0;
             }
         }
+
 
 
 

@@ -1,4 +1,4 @@
-* {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -63,7 +63,7 @@
         }
 
         h1 {
-            color: #32A473;
+            color: #ffffff;
             text-align: center;
             margin-bottom: 25px;
         }
@@ -93,16 +93,6 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        footer {
-            background: linear-gradient(to right, #32A473, #2A8C63);
-            padding: 20px 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: auto;
-            color: white;
-        }
-
         button {
             background: linear-gradient(to right, #32A473, #2A8C63);
             color: white;
@@ -113,6 +103,47 @@
             font-size: 1.1rem;
             font-weight: bold;
             margin-top: 15px;
+        }
+
+        footer {
+            background: linear-gradient(to right, #32A473, #2A8C63);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .auth {
+            display: flex;
+            gap: 20px;
+        }
+
+        .auth-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .auth-item:hover {
+            color: #FFD700;
+        }
+
+        .auth-item img {
+            width: 20px;
+            height: 20px;
         }
 
         @media (max-width: 768px) {
