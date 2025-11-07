@@ -316,6 +316,7 @@
         <div class="logo">
             <img src="elementos/logo.png" alt="">
             <h1>LINGO</h1>
+             <h3>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
         </div>
         <div class="menu">
             <img src="elementos/menu.png" alt="">
@@ -378,11 +379,10 @@
         </div>
         <div class="auth">
             <div class="auth-item">
-                <span>Registrarse</span>
-                <img src="elementos/cuenta.png" alt="Cuenta">
-            </div>
-            <div class="auth-item">
-                <span>Iniciar sesión</span>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Cerrar sesión</button>
+                </form>
                 <img src="elementos/seguridad.png" alt="Seguridad">
             </div>
         </div>

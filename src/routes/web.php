@@ -13,6 +13,9 @@ Route::get('/rankings', [RankingController::class, 'index'])->name('rankings.ind
 // Ruta que muestra la lista de rankings con otro estilo
 // Llama al método 'indexStyled' del mismo controlado
 Route::get('/rankingsStyled', [RankingController::class, 'indexStyled'])->name('rankings.indexStyled');
+Route::get('/lingo', function () {
+    return view('lingo');
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
