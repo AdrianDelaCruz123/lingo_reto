@@ -318,6 +318,7 @@
             <h1>LINGO</h1>
              <h3>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
         </div>
+
         <div class="menu">
             <img src="elementos/menu.png" alt="">
         </div>
@@ -346,20 +347,28 @@
                     </tr>
                     <tr>
                         <td>1#</td>
+                        <td>23</td>
                     </tr>
                     <tr>
-                        <td>2#</td>
+                        <td>2# </td>
+                        <td>19</td>
                     </tr>
                     <tr>
                         <td>3#</td>
+                        <td>15</td>
                     </tr>
                     <tr>
                         <td>4#</td>
+                        <td>10</td>
                     </tr>
                     <tr>
                         <td>5#</td>
+                        <td>8</td>
                     </tr>
                 </table>
+                <form action="{{ route('rankings.indexStyled') }}" method="GET" style="display:inline;">
+                    <button type="submit">🏆 Ver Ranking</button>
+                </form>
             </div>
 
             <div class="timer">
