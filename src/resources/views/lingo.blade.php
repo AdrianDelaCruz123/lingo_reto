@@ -7,25 +7,28 @@
     <link rel="stylesheet" href="{{ asset('css/lingo.css') }}">
 </head>
 <body>
+    <div class="background-pattern"></div>
+    
     <header>
         <div class="logo">
-            <img src="elementos/logo.png" alt="">
-            <h1>LINGO</h1>
-            <h3>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
+            <div class="logo-icon">
+                <img src="elementos/logo.png" alt="Logo Lingo">
+            </div>
+            <div class="logo-text">
+                <h1>LINGO</h1>
+                <h3 class="welcome-text">Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
+            </div>
         </div>
 
         <div class="menu">
-            <img src="elementos/menu.png" alt="">
+            <div class="menu-icon">
+                <img src="elementos/menu.png" alt="Menú">
+            </div>
         </div>
     </header>
 
     <div class="main">
         <div class="game">
-            <div class="info">
-                <h3>¿Qué es Lingo?</h3>
-                <p>Lingo es un juego de adivinar palabras, con un formato de crucigrama. Tienes cinco intentos para adivinar la palabra secreta y saber qué letras están correctas. ¡Demuestra tu vocabulario y habilidades lingüísticas!</p>
-            </div>
-
             <div class="board">
                 <div id="contenedor"></div>
                 <div id="teclado"></div>
@@ -33,64 +36,85 @@
         </div>
 
         <div class="stats">
-            <div class="ranking">
-                <h3>Ranking Global</h3>
+            <div class="ranking-card">
+                <div class="card-header">
+                    <h3>Ranking Global</h3>
+                </div>
                 <table class="ranking-table">
-                    <tr>
-                        <th>Top</th>
-                        <th>Racha</th>
-                    </tr>
-                    <tr>
-                        <td>1#</td>
-                        <td>23</td>
-                    </tr>
-                    <tr>
-                        <td>2# </td>
-                        <td>19</td>
-                    </tr>
-                    <tr>
-                        <td>3#</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <td>4#</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>5#</td>
-                        <td>8</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Top</th>
+                            <th>Racha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="top-badge top-1">1#</span></td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td><span class="top-badge top-2">2#</span></td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td><span class="top-badge top-3">3#</span></td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td><span class="top-badge">4#</span></td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><span class="top-badge">5#</span></td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
                 </table>
-                <form action="{{ route('rankings.indexStyled') }}" method="GET" style="display:inline;">
-                    <button type="submit">Ver Ranking</button>
+                <form action="{{ route('rankings.indexStyled') }}" method="GET" class="ranking-btn-container">
+                    <button type="submit" class="ranking-btn">Ver Ranking Completo</button>
                 </form>
             </div>
 
-            <div class="timer">
-                <h2>Tiempo restante:</h2>
-                <div id="tiempo">15</div>
-                <div class="streak">Racha actual: <span id="racha">0</span> <span class="diamond"></span></div>
-                <button id="btnNuevaPartida" style="display:none;" onclick="nuevaPartida()">Nueva partida</button>
+            <div class="timer-card">
+                <div class="card-header">
+                    <h2>Tiempo restante</h2>
+                </div>
+                <div id="tiempo" class="time-display">15</div>
+                <div class="streak-container">
+                    <div class="streak-text">Racha actual: <span id="racha">0</span></div>
+                </div>
+                <button id="btnNuevaPartida" style="display:none;" onclick="nuevaPartida()" class="new-game-btn">Nueva partida</button>
             </div>
         </div>
     </div>
 
     <footer>
         <div class="social">
-            <img src="elementos/facebook.png" alt="Facebook">
-            <img src="elementos/X.png" alt="Instagram">
-            <img src="elementos/instagram.png" alt="Twitter">
+            <div class="social-icon">
+                <img class="imgSocial" src="elementos/facebook.png" alt="Facebook">
+            </div>
+            <div class="social-icon">
+                <img class="imgSocial" src="elementos/X.png" alt="Twitter">
+            </div>
+            <div class="social-icon">
+                <img class="imgSocial" src="elementos/instagram.png" alt="Instagram">
+            </div>
         </div>
         <div class="auth">
             <div class="auth-item">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button id="CerrarSesion" type="submit">Cerrar sesión</button>
+                    <button id="CerrarSesion" type="submit" class="logout-btn">
+                        <span>Cerrar sesión</span>
+                    </button>
                 </form>
-                <img src="elementos/seguridad.png" alt="Seguridad">
+                <div class="security-icon">
+                    <img src="elementos/seguridad.png" alt="Seguridad">
+                </div>
             </div>
         </div>
     </footer>
+    
     <script>
         //-----------------Variables
         let SECRETA = "";
@@ -101,16 +125,12 @@
         let tiempo = 15;
         let seg = 0;
 
-
-        
-
         //-----------------Elementos del html
         const contTiempo = document.getElementById("tiempo");
         const contenedor = document.getElementById("contenedor");
         const teclado = document.getElementById("teclado");
         const contRacha = document.getElementById("racha");
         const btnNuevaPartida = document.getElementById("btnNuevaPartida");
-
 
         //----------------Funciones
         async function obtenerPalabraSecreta() {
@@ -133,7 +153,6 @@
             }
         }
 
-
         function crearTablero() {
             contenedor.innerHTML = "";
             for (let i = 0; i < 5; i++) {
@@ -144,8 +163,7 @@
                     const letra = document.createElement("div");
                     letra.id = `Pos${i}${j}`;
                     letra.textContent = "";
-                    letra.style.fontSize = "2rem";
-                    letra.style.fontWeight = "bold";
+                    letra.className = "letra-celda";
                     celda.appendChild(letra);
                     contenedor.appendChild(celda);
                 }
@@ -184,7 +202,6 @@
             }, 1000);
         }
 
-
         async function cambiarLetra(letra) {
             let letraPos = document.getElementById(`Pos${posicion.fila}${posicion.columna}`);
             letraPos.textContent = letra;
@@ -197,9 +214,6 @@
                 posicion.columna = 0;
             }
         }
-
-
-
 
         async function validarPalabra() {
             // Primero, verificamos si la palabra existe en la API
@@ -267,7 +281,6 @@
             }
         }
 
-
         async function verificarPalabraAPI(palabraUsuario) {
             try {
                 const respuesta = await fetch(`http://185.60.43.155:3000/api/check/${palabraUsuario}`);
@@ -280,7 +293,6 @@
             }
         }
 
-
         function desactivarTeclado() {
             const teclas = teclado.querySelectorAll(".tecla");
             teclas.forEach(tecla => {
@@ -289,6 +301,7 @@
                 tecla.style.cursor = "not-allowed";
             });
         }
+        
         async function nuevaPartida() {
             posicion = { fila: 0, columna: 0 };
             palabra = "";
@@ -298,6 +311,7 @@
             iniciarTiempo();
             btnNuevaPartida.style.display = "none";
         }
+        
         async function iniciarJuego() {
             crearTablero();
             crearTeclado();
@@ -307,8 +321,6 @@
         
         //--------------------Main
         iniciarJuego();
-
-
     </script>
 </body>
 </html>
