@@ -15,6 +15,7 @@ services:
     # Sincroniza la carpeta local 'src' con '/var/www/html' del contenedor
     volumes:
       - ./src:/var/www/html
+      - ./sites:/etc/apache2/sites-available
     # Espera a que el servicio 'db' esté listo antes de iniciarse
     depends_on:
       - db
