@@ -16,7 +16,7 @@
     <header>
         <div class="logo">
             <div class="logo-icon">
-                <img src="elementos/logo.png" alt="Logo">
+                <img src="{{ asset('elementos/logo.png') }}" alt="Logo">
             </div>
             <h1>LINGO</h1>
         </div>
@@ -48,7 +48,7 @@
             
             <div class="cta-container">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="cta-btn primary">Jugar Ahora</a>
+                    <a href="{{ url('/lingo') }}" class="cta-btn primary">Jugar Ahora</a>
                 @else
                     <a href="{{ route('register') }}" class="cta-btn primary">Comenzar Gratis</a>
                     <a href="{{ route('login') }}" class="cta-btn secondary">Ya tengo cuenta</a>

@@ -54,17 +54,27 @@
 
     <footer>
         <div class="social">
-            <img src="elementos/facebook.png" alt="Facebook">
-            <img src="elementos/X.png" alt="Instagram">
-            <img src="elementos/instagram.png" alt="Twitter">
+            <div class="social-icon">
+                <img class="imgSocial" src="{{ asset('elementos/facebook.png') }}" alt="Logo">
+            </div>
+            <div class="social-icon">
+                <img class="imgSocial" src="{{ asset('elementos/X.png') }}" alt="Logo">
+            </div>
+            <div class="social-icon">
+                <img class="imgSocial" src="{{ asset('elementos/instagram.png') }}" alt="Logo">
+            </div>
         </div>
         <div class="auth">
             <div class="auth-item">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit">Cerrar sesión</button>
+                    <button id="CerrarSesion" type="submit" class="logout-btn">
+                        <span>Cerrar sesión</span>
+                    </button>
                 </form>
-                <img src="elementos/seguridad.png" alt="Seguridad">
+                <div class="security-icon">
+                <img src="{{ asset('elementos/seguridad.png') }}" alt="Logo">
+                </div>
             </div>
         </div>
     </footer>

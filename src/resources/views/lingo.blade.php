@@ -12,7 +12,7 @@
     <header>
         <div class="logo">
             <div class="logo-icon">
-                <img src="elementos/logo.png" alt="Logo Lingo">
+                <img src="{{ asset('elementos/logo.png') }}" alt="Logo">
             </div>
             <div class="logo-text">
                 <h1>LINGO</h1>
@@ -91,13 +91,13 @@
     <footer>
         <div class="social">
             <div class="social-icon">
-                <img class="imgSocial" src="elementos/facebook.png" alt="Facebook">
+                <img class="imgSocial" src="{{ asset('elementos/facebook.png') }}" alt="Logo">
             </div>
             <div class="social-icon">
-                <img class="imgSocial" src="elementos/X.png" alt="Twitter">
+                <img class="imgSocial" src="{{ asset('elementos/X.png') }}" alt="Logo">
             </div>
             <div class="social-icon">
-                <img class="imgSocial" src="elementos/instagram.png" alt="Instagram">
+                <img class="imgSocial" src="{{ asset('elementos/instagram.png') }}" alt="Logo">
             </div>
         </div>
         <div class="auth">
@@ -109,7 +109,7 @@
                     </button>
                 </form>
                 <div class="security-icon">
-                    <img src="elementos/seguridad.png" alt="Seguridad">
+                <img src="{{ asset('elementos/seguridad.png') }}" alt="Logo">
                 </div>
             </div>
         </div>
@@ -135,23 +135,28 @@
         //----------------Funciones
         async function obtenerPalabraSecreta() {
             try {
-                const respuesta = await fetch("/palabrasRandom", {
-                    credentials: "same-origin" // importante para rutas con auth
-                });
+                // Petición directa a tu API externa
+                const respuesta = await fetch("http://185.60.43.155:3000/api/word/1");
 
                 if (!respuesta.ok) {
                     throw new Error("Error al obtener la palabra: " + respuesta.status);
                 }
 
                 const data = await respuesta.json();
-                SECRETA = data.word.toUpperCase();
-                console.log("Palabra secreta:", SECRETA);
+                SECRETA = (data.word || data.palabra || "").toUpperCase();
+
+                if (!SECRETA) {
+                    throw new Error("Respuesta inválida de la API");
+                }
+
+                console.log("Palabra secreta cargada:", SECRETA);
             } catch (error) {
-                console.error("Error al obtener la palabra secreta:", error);
+                console.error("Error al obtener la palabra secreta desde la API externa:", error);
                 alert("No se pudo obtener la palabra secreta. Usando valor por defecto.");
-                SECRETA = "SIFON"; 
+                SECRETA = "SIFON";
             }
         }
+
 
         function crearTablero() {
             contenedor.innerHTML = "";
@@ -230,7 +235,7 @@
 
                 if (posicion.fila > 4) {
                     desactivarTeclado();
-                    alert("Has perdido");
+                    alert("Has perdido la palabra era: " + SECRETA);
                     racha = 0;
                     contRacha.innerText = racha;
                     btnNuevaPartida.style.display = "block";
@@ -269,7 +274,7 @@
                 posicion.columna = 0;
                 if (posicion.fila > 4) {
                     desactivarTeclado();
-                    alert("Has perdido");
+                    alert("Has perdido la palabra era: " + SECRETA);
                     racha = 0;
                     contRacha.innerText = racha;
                     btnNuevaPartida.style.display = "block";

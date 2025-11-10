@@ -1,3 +1,15 @@
+        :root {
+            --primary-color: #32A473;
+            --primary-dark: #2A8C63;
+            --secondary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --background-dark: #0a0a0a;
+            --background-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #EDEDEC;
+            --text-secondary: #B0B0B0;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
         * {
             margin: 0;
             padding: 0;
@@ -106,8 +118,8 @@
         }
 
         footer {
-            background: linear-gradient(to right, #32A473, #2A8C63);
-            padding: 20px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -119,31 +131,74 @@
             gap: 15px;
         }
 
-        .social img {
-            width: 30px;
-            height: 30px;
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+        }
+
+
+        .imgSocial {
+            width: 50px;
+            height: 50px;
+            filter: brightness(0) invert(1);
         }
 
         .auth {
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: 15px;
         }
 
         .auth-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(255, 82, 82, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .security-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            transition: var(--transition);
             cursor: pointer;
         }
 
-        .auth-item:hover {
-            color: #FFD700;
+        .security-icon:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
         }
 
-        .auth-item img {
+        .security-icon img {
             width: 20px;
             height: 20px;
+            filter: brightness(0) invert(1);
         }
 
         @media (max-width: 768px) {
