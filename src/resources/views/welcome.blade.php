@@ -16,7 +16,7 @@
     <header>
         <div class="logo">
             <div class="logo-icon">
-                <img src="{{ asset('elementos/logo.png') }}" alt="Logo">
+                <a href="http://lingo.local:8080"><img src="{{ asset('elementos/logo.png') }}" alt="Logo"></a>
             </div>
             <h1>LINGO</h1>
         </div>
