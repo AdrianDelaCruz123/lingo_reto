@@ -1,5 +1,5 @@
 proyecto: lingo
-autor: alumno de 2daw
+autor: Adrian de 2daw3
 fecha: 2025
 
 ------------------------------------------------------------
