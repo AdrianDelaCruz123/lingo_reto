@@ -22,7 +22,7 @@
 
         <div class="menu">
             <div class="menu-icon">
-                <img src="elementos/menu.png" alt="Menú">
+                <a href="http://lingo.local:8080/lingo"><img src="elementos/menu.png" alt="Menú"></a>
             </div>
         </div>
     </header>

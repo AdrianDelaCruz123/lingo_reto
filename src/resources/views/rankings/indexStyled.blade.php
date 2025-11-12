@@ -14,13 +14,13 @@
 <body>
     <header>
         <div class="logo">
-            <img src="elementos/logo.png" alt="">
+            <a href="http://lingo.local:8080"><img src="elementos/logo.png" alt=""></a>
             <h1>LINGO</h1>
             <h3>Bienvenido, {{ Auth::user()->name ?? 'Usuario' }}</h3>
         </div>
 
         <div class="menu">
-            <img src="elementos/menu.png" alt="">
+            <a href="http://lingo.local:8080/lingo"><img src="elementos/menu.png" alt=""></a>
         </div>
     </header>
 
